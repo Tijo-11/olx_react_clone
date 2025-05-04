@@ -1,7 +1,7 @@
 import olxLogo from '../assets/olx-logo.svg';
 import avatar from '../assets/avatar.png';
 
-function LoginStep3({ email, setStep, handleLogin }) {
+function LoginStep3({ email, setStep, handleLogin, error }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const password = e.target.password.value;
@@ -27,6 +27,7 @@ function LoginStep3({ email, setStep, handleLogin }) {
         placeholder="Password"
         required
       />
+      {error && <p className="text-sm text-red-600">{error}</p>}
       <a href="#" className="text-sm text-indigo-600 hover:underline">
         Forgot Password?
       </a>

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import SecondaryNavbar from './components/SecondaryNavbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/sell" element={<Home />} />
             <Route path="/chat" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/notifications" element={<ProtectedRoute><Home /></ProtectedRoute>} />
