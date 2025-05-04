@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
+import SecondaryNavbar from './components/SecondaryNavbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import SecondaryNavbar from './components/SecondaryNavbar';
 
 function App() {
   return (
@@ -17,10 +16,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/dashboard"
-              element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
-            />
+            <Route path="/sell" element={<Home />} />
+            <Route path="/chat" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/help" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -1,37 +1,32 @@
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useLocation, useNavigate } from 'react-router-dom';
+import LoginStep1 from '../components/LoginStep1';
+import LoginStep2 from '../components/LoginStep2';
+import LoginStep3 from '../components/LoginStep3';
 
 function Login() {
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signIn(email);
-    navigate('/dashboard');
+  const handleLogin = (password) => {
+    signIn(email, password);
+    const from = location.state?.from?.pathname || '/';
+    navigate(from, { replace: true });
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4">Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          className="w-full p-2 mb-4 border rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700"
-        >
-          Login
-        </button>
-      </form>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-xl">
+        {step === 1 && <LoginStep1 setStep={setStep} />}
+        {step === 2 && <LoginStep2 email={email} setEmail={setEmail} setStep={setStep} />}
+        {step === 3 && (
+          <LoginStep3 email={email} setStep={setStep} handleLogin={handleLogin} />
+        )}
+      </div>
     </div>
   );
 }
