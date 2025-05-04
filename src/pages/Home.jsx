@@ -6,6 +6,7 @@ import LoadMore from '../components/LoadMore';
 import BackToTop from '../components/BackToTop';
 import Footer from '../components/Footer';
 
+
 function Home() {
   const [cardSets, setCardSets] = useState([generateCardSet()]);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -49,7 +50,10 @@ function Home() {
         </div>
       ))}
       <BackToTop isVisible={showBackToTop && cardSets.length > 1} onClick={handleBackToTopClick} />
+      <br/>
       <LoadMore onLoadMore={handleLoadMore} />
+      <br/>
+      <br/>
       <Banner />
       <Footer />
     </div>
